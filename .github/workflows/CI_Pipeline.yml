@@ -1,0 +1,20 @@
+name: CI_Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: vagrant
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Build and deploy Docker image
+      uses: docker/compose-action@v1
+      with:
+        context: ./app
+        compose-file: docker-compose.yaml
+        push: true
