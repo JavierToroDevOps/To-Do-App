@@ -24,9 +24,9 @@ jobs:
       with:
         node-version: ${{ env.NODE_VERSION }}
 
-     name: test app
-     working-directory: ${{ env.working-directory }}  
-     run: |
+    - name: test app
+      working-directory: ${{ env.working-directory }}  
+      run: |
         if [ -e yarn.lock ]; then
         yarn install --frozen-lockfile
         elif [ -e package-lock.json ]; then
