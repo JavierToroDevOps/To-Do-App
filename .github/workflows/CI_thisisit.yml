@@ -7,27 +7,39 @@ on:
 env:
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+  NODE_VERSION: 14
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      working-directory: ./app/
 
-    strategy:
-      matrix:
-        node-version: [10.x, 12.x, 14.x, 15.x]
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
 
     - name: test with test inside app
       uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: |
-        cd app
+       with:
+        node-version: ${{ env.NODE_VERSION }}
+
+     name: test app
+     working-directory: ${{ env.working-directory }}  
+     run: |
+        if [ -e yarn.lock ]; then
+        yarn install --frozen-lockfile
+        elif [ -e package-lock.json ]; then
         npm ci
-        npm run build --if-present
-        npm test
+        else
+        npm i
+        fi
+
+    - name: Test the app
+      working-directory: ${{ env.working-directory }} 
+      run: npm test
+      env:
+        NODE_ENV: test
 
     - name: Log in to Docker Hub
       uses: docker/login-action@v2
