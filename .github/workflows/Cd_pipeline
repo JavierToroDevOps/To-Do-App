@@ -23,6 +23,6 @@ jobs:
       run: |
         docker pull jatoroe/todoapp:latest
 
-    - name: make dcoker-compose up
+    - name: make docker-compose up
       run: |
        docker-compose up
