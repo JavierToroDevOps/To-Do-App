@@ -28,3 +28,4 @@ jobs:
     - name: make docker-compose up
       run: |
        ls -a
+       docker-compose up
