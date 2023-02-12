@@ -27,4 +27,4 @@ jobs:
 
     - name: make docker-compose up
       run: |
-       pwd
+       ls -a
