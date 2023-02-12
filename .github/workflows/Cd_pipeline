@@ -2,9 +2,10 @@ name: CD_pipelne
 
 on:
   workflow_run:
-    workflows: ["CI workflow"]
     types:
       - completed
+    workflows: ["CI workflow"]
+    
 env:
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
