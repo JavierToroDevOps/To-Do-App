@@ -27,7 +27,6 @@ jobs:
 
     - name: make docker-compose up
       run: |
-       ls -a
        docker-compose down
        docker container prune
        docker-compose up -d
