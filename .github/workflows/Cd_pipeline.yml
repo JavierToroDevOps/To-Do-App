@@ -31,4 +31,3 @@ jobs:
        docker container prune
        docker-compose up -d
        docker ps
-       ls -a
