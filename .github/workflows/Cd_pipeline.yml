@@ -21,7 +21,7 @@ jobs:
         username: ${{ env.DOCKER_USERNAME }}
         password: ${{ env.DOCKER_PASSWORD }}
 
-    - name: Pull dockerhub image
+    - name: Pull dockerhub image.
       run: |
         docker pull jatoroe/todoapp:latest
 
