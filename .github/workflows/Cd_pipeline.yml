@@ -31,4 +31,4 @@ jobs:
        docker-compose down
        docker container prune
        docker-compose up -d
-       dcoker ps
+       docker ps
